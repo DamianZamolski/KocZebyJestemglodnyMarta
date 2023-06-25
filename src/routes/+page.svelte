@@ -17,12 +17,12 @@
     background-image: url("https://i.ibb.co/vBRFT6T/bg-2-1.png");
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: "Caveat Variable", sans-serif;
   }
   .text {
     margin: 250px auto 0 auto;
     text-align: center;
     max-width: 600px;
-    font-family: "Caveat", cursive;
     font-size: 30px;
     text-shadow: 5px 3px 7px rgba(66, 68, 90, 1);
   }
