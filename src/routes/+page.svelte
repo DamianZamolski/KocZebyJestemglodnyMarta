@@ -8,11 +8,8 @@
   });
 </script>
 
-<div class="picture">
-  <img src="https://i.ibb.co/dMGfVZZ/tree1-1.png" alt="tree1-1" />
-</div>
-
 {#if visitCount < 2}
+  <img src="https://i.ibb.co/dMGfVZZ/tree1-1.png" alt="tree1-1" />
   <p>
     Brawo, brawo... Nie ma to jak rozwiązywanie zagadki po wieczorze chlania i
     grania w gry, prawda?
@@ -26,6 +23,7 @@
     Albo będziesz je podlewać, albo nie uda Ci się zdobyć nagrody!
   </p>
 {:else}
+  <img src="https://i.ibb.co/CVBFzZJ/tree2-1.png" alt="drzewko" />
   <p>
     Drzewko już podlane - nie ma się co śpieszyć. Teraz zostaje tylko cierpliwie
     czekać...
@@ -39,14 +37,16 @@
     background-repeat: no-repeat;
     font-family: "Caveat Variable", sans-serif;
   }
+
   p {
-    margin: 250px auto 0 auto;
-    max-width: 600px;
+    margin: 0 auto;
+    max-width: 60ch;
     text-align: center;
-    font-size: 30px;
+    font-size: 2em;
   }
 
-  .picture {
-    text-align: center;
+  img {
+    display: block;
+    margin: 0 auto;
   }
 </style>
