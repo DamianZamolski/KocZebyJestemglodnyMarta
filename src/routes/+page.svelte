@@ -8,24 +8,28 @@
   });
 </script>
 
-{#if visitCount === 1}
-  <div class="text">
-    <p>
-      Brawo, brawo... Nie ma to jak rozwiązywanie zagadki po wieczorze chlania i
-      grania w gry, prawda?
-    </p>
-    <p>
-      Ale jak wiadomo, wszystko co dobre, wymaga czasu. Więc na kolejną część
-      zagadki musisz poczekać.
-    </p>
-    <p>
-      I nie myśl, że dasz radę mnie oszukać - o drzewko trzeba regularnie dbać.
-      Albo będziesz je podlewać, albo nie uda Ci się zdobyć nagrody!
-    </p>
-  </div>
-  <div class="picture">
-    <img src="https://i.ibb.co/dMGfVZZ/tree1-1.png" alt="tree1-1" />
-  </div>
+<div class="picture">
+  <img src="https://i.ibb.co/dMGfVZZ/tree1-1.png" alt="tree1-1" />
+</div>
+
+{#if visitCount < 2}
+  <p>
+    Brawo, brawo... Nie ma to jak rozwiązywanie zagadki po wieczorze chlania i
+    grania w gry, prawda?
+  </p>
+  <p>
+    Ale jak wiadomo, wszystko co dobre, wymaga czasu. Więc na kolejną część
+    zagadki musisz poczekać.
+  </p>
+  <p>
+    I nie myśl, że dasz radę mnie oszukać - o drzewko trzeba regularnie dbać.
+    Albo będziesz je podlewać, albo nie uda Ci się zdobyć nagrody!
+  </p>
+{:else}
+  <p>
+    Drzewko już podlane - nie ma się co śpieszyć. Teraz zostaje tylko cierpliwie
+    czekać...
+  </p>
 {/if}
 
 <style>
@@ -35,12 +39,11 @@
     background-repeat: no-repeat;
     font-family: "Caveat Variable", sans-serif;
   }
-  .text {
+  p {
     margin: 250px auto 0 auto;
-    text-align: center;
     max-width: 600px;
+    text-align: center;
     font-size: 30px;
-    text-shadow: 5px 3px 7px rgba(66, 68, 90, 1);
   }
 
   .picture {
