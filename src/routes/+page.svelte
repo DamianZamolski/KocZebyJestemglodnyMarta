@@ -1,26 +1,40 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  let visitCount = 0;
+  let timer: number | null = null;
+  let podlano = 0;
+  let success = false;
+
   onMount(() => {
-    visitCount = parseInt(localStorage.getItem("visitCount") || "0") + 1;
-    localStorage.setItem("visitCount", visitCount.toString());
+    success = JSON.parse(localStorage.getItem("success") || "false");
   });
+
+  function podlej() {
+    if (!timer) {
+      timer = setTimeout(() => {
+        if (podlano === 18) {
+          localStorage.setItem("success", "true");
+          success = true;
+        }
+        podlano = 0;
+        timer = null;
+      }, 10000);
+    }
+
+    podlano++;
+  }
 </script>
 
-<img src="https://i.ibb.co/dMGfVZZ/tree1-1.png" alt="tree1-1" />
-<p>
-  {#if visitCount < 2}
-    Brawo, brawo... Nie ma to jak rozwiązywanie zagadki po wieczorze chlania i
-    grania w gry, prawda? Ale jak wiadomo, wszystko co dobre, wymaga czasu. Więc
-    na kolejną część zagadki musisz poczekać. I nie myśl, że dasz radę mnie
-    oszukać - o drzewko trzeba regularnie dbać. Albo będziesz je podlewać, albo
-    nie uda Ci się zdobyć nagrody!
-  {:else}
-    Drzewko już podlane - nie ma się co śpieszyć. Teraz zostaje tylko cierpliwie
-    czekać...
-  {/if}
-</p>
+<img src="https://i.ibb.co/CVBFzZJ/tree2-1.png" alt="tree2-1" />
+{#if success}
+  <p>
+    No dobrze, już wystarczająco nakapałeś. Teraz daj mi chwilę ochłonąć po tym
+    złotym deszczu.
+  </p>
+{:else}
+  <p>Osiemnaście listków? Mam nadzieję, że umiesz dbać o swoje drzewko.</p>
+  <button on:click={podlej}>Podlej</button>
+{/if}
 
 <style>
   :global(body) {
@@ -28,6 +42,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     font-family: "Caveat Variable", sans-serif;
+  }
+
+  :global(*) {
+    margin: 0 auto;
+  }
+
+  button {
+    display: block;
   }
 
   p {
