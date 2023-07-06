@@ -1,68 +1,23 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
-  let timer: number | null = null;
-  let podlano = 0;
-  let success = false;
-  let thirdQuest = false;
-
-  onMount(() => {
-    success = JSON.parse(localStorage.getItem("success") || "false");
-    thirdQuest = JSON.parse(localStorage.getItem("third-quest") || "false");
-  });
-
-  function podlej() {
-    if (!timer) {
-      timer = setTimeout(() => {
-        if (podlano === 18) {
-          localStorage.setItem("success", "true");
-          success = true;
-        }
-        podlano = 0;
-        timer = null;
-      }, 10000);
-    }
-
-    podlano++;
-  }
-
-  let jablka = 0;
-  let gruszki = 0;
-
-  function jablko() {
-    gruszki = 0;
-    thirdQuest = ++jablka === 5;
-    localStorage.setItem("third-quest", JSON.stringify(thirdQuest));
-  }
-
-  function gruszka() {
-    jablka = 0;
-    thirdQuest = ++gruszki === 5;
-    localStorage.setItem("third-quest", JSON.stringify(thirdQuest));
+  let clicked = false;
+  function click() {
+    clicked = true;
   }
 </script>
 
-{#if thirdQuest}
+{#if clicked}
   <img
-    src="https://i.ibb.co/y6SgnxF/tree3-2-removebg-preview.png"
-    alt="tree3-2-removebg-preview"
+    src="https://cdn.discordapp.com/attachments/718766995516162078/1126133441109442641/shutterstock-738008380_800x600.png"
+    alt="dupa"
   />
-  <p>Świetnie. Niech i tak będzie. Kiedyś.</p>
-{:else if success}
-  <img
-    src="https://i.ibb.co/y6SgnxF/tree3-2-removebg-preview.png"
-    alt="tree3-2-removebg-preview"
-  />
-  <p>
-    Jeszcze trochę i będziesz mógł zbierać owoce swojej pracy. Rośnie na mnie
-    pięć POTĘŻNYCH KONARÓW. Myślisz, żę urodzę jabłka czy gruszki?
-  </p>
-  <button on:click={jablko}>Jablko</button>
-  <button on:click={gruszka}>Gruszka</button>
+  <p>Ciekawe co można z tego utkać w dzisiejszych czasach.</p>
 {:else}
-  <img src="https://i.ibb.co/CVBFzZJ/tree2-1.png" alt="tree2-1" />
-  <p>Osiemnaście listków? Mam nadzieję, że umiesz dbać o swoje drzewko.</p>
-  <button on:click={podlej}>Podlej</button>
+  <button on:click={click}>
+    <img
+      src="https://i.ibb.co/DgD8xTH/tree4-removebg-preview.png"
+      alt="tree4-removebg-preview"
+    />
+  </button>
 {/if}
 
 <style>
@@ -79,6 +34,14 @@
 
   button {
     display: block;
+    border: unset;
+    background: unset;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
   }
 
   p {
@@ -89,11 +52,5 @@
     background-color: rgba(255, 255, 255, 0.7);
     text-align: center;
     font-size: 2em;
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-    padding: 1rem;
   }
 </style>
